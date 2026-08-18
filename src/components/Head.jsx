@@ -1,8 +1,11 @@
 import React from 'react'
+import { IconMenu2 } from '@tabler/icons-react'
 
 const Head = () => {
   return (
-    <div>Head</div>
+    <div>
+      <IconMenu2/>
+    </div>
   )
 }
 
