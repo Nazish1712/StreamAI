@@ -6,7 +6,7 @@ function App() {
   
 
   return (
-    <div>
+    <div className="py-2 px-2">
     <Head/>
     <Body/>
     </div>
