@@ -70,15 +70,14 @@ const sidebarLinksSecondary = [
 
   return (
     //sidebar for md and lg screens
-    <div className=" px-3 py-6 font-lato bg-neutral-50 shadow-sm rounded-md mt-2">
+    <div className=" hidden md:flex px-3 py-6 font-lato bg-neutral-50 shadow-sm rounded-md mt-2">
      <div className="flex flex-col items-center justify-center gap-9">
-      {sidebarLinksPrimary.map((link,index)=>(
+      {sidebarLinksPrimary.map((link)=>(
        <div className="flex flex-col gap-0.5 items-center">
         {link.icon}
          <h2 key={link.title} className="text-sm">{link.title}</h2>
          </div>
-        
-       ))}
+        ))}
         </div>
     </div>
   )
