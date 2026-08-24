@@ -2,8 +2,10 @@ import React from 'react'
 
 const SlideSidebar = () => {
   return (
-    <div>
-        
+    <div className="">
+        <div>
+
+        </div>
     </div>
   )
 }

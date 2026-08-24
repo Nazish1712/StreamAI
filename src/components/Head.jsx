@@ -25,6 +25,8 @@ const Head = () => {
          className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 rounded-full border-2 border-gray-600 dark:bg-neutral-500"></img>
       </div>
     </div>
+
+    
   )
 }
 
