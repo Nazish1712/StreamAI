@@ -21,52 +21,6 @@ const sidebarLinksPrimary = [
   },
 ]
 
-const sidebarLinksSecondary = [
-  {
-    title : "Subscription",
-    content :
-    [
-    {
-      heading : "Music",
-      href : "/",
-    },
-    {
-      heading : "Sports",
-      href : "/"
-    },
-    {
-      heading : "Gaming",
-      href : "/"
-    },
-    {
-      heading : "Movies",
-      href : "/"
-    },
-  ]
-  },
-  {
-    title : "Watch Later",
-    content :
-    [
-    {
-      heading : "Music",
-      href : "/",
-    },
-    {
-      heading : "Sports",
-      href : "/"
-    },
-    {
-      heading : "Gaming",
-      href : "/"
-    },
-    {
-      heading : "Movies",
-      href : "/"
-    },
-  ]
-  },
-]
 
   return (
     //sidebar for md and lg screens
