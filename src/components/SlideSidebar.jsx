@@ -104,7 +104,7 @@ const SlideSidebar = () => {
             <div className="ml-[6px] md:ml-[22px] mt-6 flex flex-col gap-6 mr-[6px] md:mr-[22px]">
             <div className='flex flex-col gap-3'>
             {sidebarLinksPrimary.map((link)=>(
-               <a key={link.title} className="flex gap-1.5 md:gap-2 items-center cursor-pointer">
+               <a key={link.title} className="flex gap-1.5 md:gap-2 items-center cursor-pointer hover:bg-neutral-200 rounded-sm transition-all duration-200">
                  <div>{link.icon}</div>
                  <h2 className="font-lato font-bold text-base">{link.title}</h2>
                </a>
@@ -113,14 +113,14 @@ const SlideSidebar = () => {
     
                {sidebarLinks.map((section)=>(
                  <div key={section.title}>
-                    <div className="flex gap-1.5 md:gap-2 items-center cursor-pointer"> 
+                    <div className="flex gap-1.5 md:gap-2 items-center cursor-pointer hover:bg-neutral-200 rounded-sm transition-all duration-200"> 
                       <div>{section.icon}</div>
                       <h2 className="font-lato text-base font-bold">{section.title}</h2>
                     </div>
                     
                  <div className="flex flex-col gap-1 mt-3 pl-1 md:pl-0">
                    {section.content.map((item)=>(
-                  <a key={item.heading} className="flex items-center justify-start gap-[9px] md:gap-3.5 cursor-pointer">
+                  <a key={item.heading} className="flex items-center justify-start gap-[9px] md:gap-3.5 cursor-pointer hover:bg-neutral-200 rounded-sm transition-all duration-200">
                         <div>{item.icon}</div>
                         <div className="font-lato text-sm">{item.heading}</div>
                       </a>
