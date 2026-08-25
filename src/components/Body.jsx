@@ -5,9 +5,9 @@ import SlideSidebar from './SlideSidebar'
 
 const Body = () => {
   return (
-    <div className="flex">
+    <div className="flex relative">
         <SlideSidebar/>
-        {/* <Sidebar/> */}
+        <Sidebar/>
         <MainContainer/>
     </div>
   )

@@ -3,7 +3,7 @@ import { IconHome, IconBrandYoutube , IconVideoPlus} from '@tabler/icons-react'
 
 const Sidebar = () => {
 
-const sidebarLinksPrimary = [
+ const sidebarLinksPrimary = [
   {
     title : "Home",
     icon : <IconHome className="h-7 w-7"/>,
@@ -21,20 +21,23 @@ const sidebarLinksPrimary = [
   },
 ]
 
+ 
 
   return (
     //sidebar for md and lg screens
-    <div className=" hidden md:flex px-3 py-6 font-lato bg-neutral-50 shadow-sm rounded-md mt-2">
+    <div className=" hidden md:flex px-3 py-6 font-lato bg-neutral-50 shadow-sm rounded-md mt-2 z-10">
      <div className="flex flex-col items-center justify-center gap-9">
       {sidebarLinksPrimary.map((link)=>(
-       <div className="flex flex-col gap-0.5 items-center">
+       <div key={link.title} className="flex flex-col gap-0.5 items-center">
         {link.icon}
-         <h2 key={link.title} className="text-sm">{link.title}</h2>
+         <h2  className="text-sm">{link.title}</h2>
          </div>
         ))}
         </div>
     </div>
   )
 }
+ 
+
 
 export default Sidebar
