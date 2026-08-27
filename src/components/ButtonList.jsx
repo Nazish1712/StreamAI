@@ -2,6 +2,7 @@ import React from 'react'
 import Button from './Button'
 import { useRef } from 'react'
 import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react'
+import { buttonListNames } from '../utils/button-data'
 
 const ButtonList = () => {
 
@@ -29,35 +30,10 @@ const scrollRight = () => {
       </button>
 
     <div ref={scrollRef} className="flex gap-3 overflow-x-auto scroll-smooth px-8 md:px-10 py-2 w-full custom-scrollbar-hide">
-      <Button name="All"/>
-      <Button name="Game"/>
-      <Button name="Dance"/>
-      <Button name="Sport"/>
-      <Button name="Travel"/>
-      <Button name="Food"/>
-      <Button name="Cook"/>
-      <Button name="Mobile"/>
-      <Button name="Movies"/>
-      <Button name="Music"/>
-      <Button name="Songs"/>
-      <Button name="Hotel"/> 
-      <Button name="Music"/>
-      <Button name="Songs"/>
-      <Button name="Hotel"/> 
-      <Button name="Game"/>
-      <Button name="Dance"/>
-      <Button name="Sport"/>
-      <Button name="Travel"/>
-      <Button name="Food"/>
-      <Button name="Cook"/>
-      <Button name="Mobile"/>
-      <Button name="Movies"/>
-      <Button name="Music"/>
-      <Button name="Songs"/>
-      <Button name="Hotel"/> 
-      <Button name="Music"/>
-      <Button name="Songs"/>
-      <Button name="Hotel"/> 
+      {buttonListNames.map((name, index)=>(
+        <Button key={index} name={name}/>
+      ))}
+      
       </div>
 
       <button

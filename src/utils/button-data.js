@@ -1,0 +1,19 @@
+export const buttonListNames = [
+    "All",
+    "Game",
+    "Dance",
+    "Sport",
+    "Travel",
+    "Food",
+    "Cook",
+    "Mobile",
+    "Movies",
+    "Music",
+    "Songs",
+    "Hotel",
+    "Gaming",
+    "Live",
+    "News",
+    "Learning",
+    "Podcasts"
+  ];
