@@ -5,7 +5,7 @@ import SlideSidebar from './SlideSidebar'
 
 const Body = () => {
   return (
-    <div className="flex relative">
+    <div className="flex relative items-start">
         <SlideSidebar/>
         <Sidebar/>
         <MainContainer/>

@@ -25,7 +25,7 @@ const Sidebar = () => {
 
   return (
     //sidebar for md and lg screens
-    <div className=" hidden md:flex px-1 py-12 font-lato bg-neutral-50 shadow-sm rounded-md mt-3 z-10">
+    <div className=" hidden md:flex px-1 py-11 font-lato bg-neutral-50 shadow-sm rounded-md mt-5 z-10 sticky top-[80px]">
      <div className="flex flex-col items-center justify-center gap-9">
       {sidebarLinksPrimary.map((link)=>(
        <div key={link.title} className="flex flex-col gap-0.5 items-center p-2 hover:bg-neutral-200 cursor-pointer rounded-md transition-all duration-200">
