@@ -11,7 +11,7 @@ const toggleMenuHandler = () => {
 }
   
   return (
-    <div className="flex justify-between items-center px-1 md:px-5  dark:bg-gray-900  py-1 md:py-2 lg:py-3 bg-neutral-50 shadow-sm rounded-tl-4xl rounded-r-4xl sticky top-0 z-50">
+    <div className="flex justify-between items-center px-0.5 sm:px-1 md:px-5  dark:bg-gray-900  py-1 md:py-2 lg:py-3 bg-neutral-50 shadow-sm rounded-tl-4xl rounded-r-4xl sticky top-0 z-50">
       <div className="flex justify-between gap-1 md:gap-2 lg:gap-3">
       <IconMenu2 className='w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 text-gray-800  dark:text-neutral-100 cursor-pointer' onClick={() => toggleMenuHandler()}/>
       <div className="flex items-center md:gap-0.5" >

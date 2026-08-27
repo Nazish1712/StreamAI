@@ -19,7 +19,7 @@ const getVideos = async () => {
 
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-2 gap-2">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 pt-2 gap-4">
       {videos.map((video)=>(
         <VideoCard key={video.id} info={video}/>
       ))}
