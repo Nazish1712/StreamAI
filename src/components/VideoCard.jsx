@@ -1,5 +1,14 @@
 import React from 'react'
 
+const formatViews = (count) => {
+  if(count >= 1000000){
+    return (count / 1000000).toFixed(1) + "M";
+}else if (count >= 1000){
+  return(count/1000).toFixed(1) + "K" ;
+}
+return count;
+}
+
 const VideoCard = ({info}) => {
   const {snippet, statistics} = info
   const {channelTitle, title, thumbnails} = snippet
@@ -29,7 +38,7 @@ const VideoCard = ({info}) => {
             {channelTitle}
           </p>
           <p className="text-sm text-gray-600">
-            {statistics.viewCount} views
+            {formatViews(statistics.viewCount)} views
           </p>
         </div>
         
