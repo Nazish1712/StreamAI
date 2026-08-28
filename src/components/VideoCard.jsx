@@ -14,7 +14,7 @@ const VideoCard = ({info}) => {
   const {channelTitle, title, thumbnails} = snippet
   
   return (
-    <div className="flex flex-col w-full cursor-pointer group mb-4 hover:bg-red-100 rounded-xl p-2 font-lato">
+    <div className="flex flex-col w-full cursor-pointer group mb-4 hover:bg-red-100 rounded-xl p-2 font-lato transition-all duration-200">
       <div className="w-full">
         <img 
           src={thumbnails.medium.url} 
@@ -34,10 +34,10 @@ const VideoCard = ({info}) => {
           <h3 className="font-semibold text-base text-gray-900 line-clamp-2 leading-snug font-lato">
             {title}
           </h3>
-          <p className="text-sm text-gray-600 mt-1 group-hover:text-red-400">
+          <p className="text-sm text-gray-600 mt-1 group-hover:text-red-400 transition-all duration-200">
             {channelTitle}
           </p>
-          <p className="text-sm text-gray-600 group-hover:text-red-300">
+          <p className="text-sm text-gray-600 group-hover:text-red-300 transition-all duration-200">
             {formatViews(statistics.viewCount)} views
           </p>
         </div>
