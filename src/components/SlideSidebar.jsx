@@ -100,7 +100,7 @@ const SlideSidebar = () => {
             duration: 0.3,
             ease:"easeInOut"
           }}
-        className="absolute left-0 top-0 h-dvh w-60 bg-neutral-50 shadow-sm z-70">
+        className="fixed md:left-[7.8px] top-[42.2px] md:top-[58px] lg:top-[66px] h-dvh w-60 bg-neutral-50 shadow-sm  z-70 ">
             <div className="ml-[6px] md:ml-[22px] mt-6 flex flex-col gap-6 mr-[6px] md:mr-[22px]">
             <div className='flex flex-col gap-3'>
             {sidebarLinksPrimary.map((link)=>(

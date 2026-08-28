@@ -31,7 +31,7 @@ const appRouter = createBrowserRouter([
 function App() {
   return (
     <Provider store={store}>
-    <div className="py-2 px-2">
+    <div className="pb-2 px-2">
     <RouterProvider router={appRouter}/>
     </div>
     </Provider>
