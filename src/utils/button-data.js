@@ -15,5 +15,12 @@ export const buttonListNames = [
     "Live",
     "News",
     "Learning",
+    "Podcasts",
+    "Songs",
+    "Hotel",
+    "Gaming",
+    "Live",
+    "News",
+    "Learning",
     "Podcasts"
   ];
