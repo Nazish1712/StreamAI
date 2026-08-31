@@ -30,7 +30,7 @@ return(
 ) :(
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 pt-2 gap-4">
       {videos.map((video)=>(
-       <Link key={video.id} to={"/watch?v"+video.id}> <VideoCard  info={video}/></Link>
+       <Link key={video.id} to={"/watch?v="+video.id}> <VideoCard  info={video}/></Link>
       ))}
       
     </div>
