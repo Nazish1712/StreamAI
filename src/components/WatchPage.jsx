@@ -4,7 +4,7 @@ import { closeSidebar } from '../utils/appSlice'
 import { useSearchParams } from 'react-router-dom'
 import { IconThumbUp, IconThumbDown, IconShare, IconDownload , IconCheck ,IconThumbUpFilled, IconThumbDownFilled,} from '@tabler/icons-react'
 import { GOOGLE_API_KEY } from '../utils/constants'
-
+import { motion, AnimatePresence } from 'framer-motion'
 
 const formatCount = (count) => {
   if (!count) return "0";
@@ -95,7 +95,7 @@ const { snippet, statistics } = videoInfo
                   {channelInfo ? formatCount(channelInfo.statistics.subscriberCount) : "..."} subscribers
                 </p>
               </div>
-              <button 
+              <motion.button 
               onClick={() => {
                 setIsSubscribed(!isSubscribed)
              }}
@@ -104,13 +104,30 @@ const { snippet, statistics } = videoInfo
                   ? "bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-300" 
                   : "bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800" 
               }`}>
-               {isSubscribed ? (<>
-                <IconCheck className="w-5 h-5" />
-                Subscribed
-               </>):(
-                "Subscribe"
-               )}
-              </button>
+               <AnimatePresence mode="wait">
+                    {isSubscribed ? (
+                      <motion.div
+                        key="subscribed"
+                        initial={{ x: -20, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.3}}
+                        className="flex items-center gap-1.5"
+                      >
+                        <IconCheck className="w-5 h-5" />
+                        <span>Subscribed</span>
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="subscribe"
+                        initial={{ x: 20, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        Subscribe
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+              </motion.button>
             </div>
 
            
@@ -119,15 +136,25 @@ const { snippet, statistics } = videoInfo
               <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-full">
                 <button 
                 onClick={()=>{
-                  setIsLiked(!isLiked)
+                  if(isLiked){
+                    setIsLiked(false)
+                  }else{
+                    setIsLiked(true)
+                    setIsDisliked(false)
+                  }
                 }}
                 className="flex items-center gap-2 px-4 py-2 border-r border-gray-300 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-l-full transition-colors cursor-pointer">
                  {isLiked ? <IconThumbUpFilled className="w-5 h-5" /> : <IconThumbUp className="w-5 h-5"/>}
                   <span className="text-sm font-semibold">{formatCount(statistics.likeCount)}</span>
                 </button>
-                <button 
+                <button
                 onClick={()=>{
-                  setIsDisliked(!isDisliked)
+                  if(isDisliked){
+                    setIsDisliked(false)
+                  }else{
+                    setIsDisliked(true)
+                    setIsLiked(false)
+                  }
                 }}
                 className="px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-r-full transition-colors cursor-pointer">
                  {isDisliked ? <IconThumbDownFilled className="w-5 h-5" /> : <IconThumbDown className="w-5 h-5"/>}
