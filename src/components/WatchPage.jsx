@@ -31,6 +31,8 @@ const [isLiked, setIsLiked] = useState(false)
 
 const [isDisliked, setIsDisliked] = useState(false)
 
+const [showFullDescription, setShowFullDescription] = useState(false)
+
 useEffect(()=>{
   dispatch(closeSidebar())
 
@@ -83,7 +85,7 @@ const { snippet, statistics } = videoInfo
            
             <div className="flex items-center gap-4">
               <img  
-                src={channelInfo ? channelInfo.snippet.thumbnails.default.url : ""} 
+                src={channelInfo ? channelInfo.snippet.thumbnails.default.url : null} 
                 alt="Channel-avatar" 
                 className="w-10 h-10 rounded-full object-cover bg-gray-200"
               />
@@ -174,14 +176,24 @@ const { snippet, statistics } = videoInfo
           </div>
 
           
-          <div className="bg-gray-100 dark:bg-gray-800 rounded-xl p-3 mt-4 text-sm text-gray-800 dark:text-neutral-200 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+          <div 
+          onClick={()=>{
+            setShowFullDescription(!showFullDescription)
+          }}
+          className="bg-gray-100 dark:bg-gray-800 rounded-xl p-3 mt-4 text-sm text-gray-800 dark:text-neutral-200 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
             <p className="font-semibold text-gray-900 dark:text-white mb-1">
             {formatCount(statistics.viewCount)} views
             </p>
-            <p className="line-clamp-3">
-              {description}
-            </p>
-            <p className="font-semibold mt-2 text-gray-900 dark:text-white">Show more</p>
+            <p className={`text-sm ${
+    showFullDescription 
+      ? "whitespace-pre-wrap max-h-96 overflow-y-auto custom-scrollbar-hide"
+      : "line-clamp-3"
+  }`}>
+    {description}
+  </p>
+            <button className="font-semibold mt-2 text-gray-900 dark:text-white cursor-pointer">
+              {showFullDescription? "Show less" : "Show more"}
+            </button>
           </div>
         </div>
      </div>   
