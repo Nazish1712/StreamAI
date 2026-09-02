@@ -1,10 +1,39 @@
-import React from 'react'
+import React ,{useEffect, useState} from 'react'
 import { IconMenu2 , IconMovie, IconUserCog, IconSearch} from '@tabler/icons-react'
 import { useDispatch } from 'react-redux'
 import { toggleMenu } from '../utils/appSlice'
 import { Link } from 'react-router-dom'
+import { YOUTUBE_SEARCH_API } from '../utils/constants'
 
 const Head = () => {
+
+const [searchQuery, setSearchQuery] = useState("")
+
+
+useEffect(()=>{
+  console.log(searchQuery)
+  //make an API call after every key press 
+  //but if the difference between 2 API call is <200ms
+  //decline the API call
+  const timer = setTimeout(()=> 
+    getSearchSuggestions(), 
+    200)
+
+   return () => {
+     clearTimeout(timer)
+   }
+
+  },[searchQuery])
+
+const getSearchSuggestions = async () => {
+   try{const data = await fetch(YOUTUBE_SEARCH_API + searchQuery)
+   const json = await data.json() 
+  }
+   catch(error){
+    console.error("Failed to fetch suggestions:", error);
+   }
+  }
+
 const dispatch = useDispatch()
 
 const toggleMenuHandler = () => {
@@ -22,8 +51,11 @@ const toggleMenuHandler = () => {
       </div>
       
       <div className='flex items-center gap-0.5 md:gap-1 bg-white dark:bg-gray-600   px-0.5 md:px-1 py-0.5 w-full max-w-[288px] md:max-w-96 lg:max-w-2xl rounded-full border border-gray-300 dark:border-gray-700'>
-        <input type="text" placeholder="Search for videos" className='w-full rounded-full p-0.5 focus:outline-none placeholder:font-inter 
-        placeholder:text-sm md:placeholder:text-base'></input>
+        <input type="text"  placeholder="Search for videos" className='w-full rounded-full p-0.5 focus:outline-none placeholder:font-inter 
+        placeholder:text-sm md:placeholder:text-base'
+        value={searchQuery}
+        onChange={(e)=>setSearchQuery(e.target.value)}
+        ></input>
         <button className='bg-neutral-50 dark:bg-gray-700 rounded-r-full p-1 md:p-1.5 cursor-pointer'>
           <IconSearch className='w-5 h-5 md:w-6 md:h-6 text-gray-600 dark:bg-gray-600'/>
         </button>
