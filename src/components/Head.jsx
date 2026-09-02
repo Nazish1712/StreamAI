@@ -9,16 +9,18 @@ const Head = () => {
 
 const [searchQuery, setSearchQuery] = useState("")
 
-
+const [suggestions, setSuggestions] = useState([])
 useEffect(()=>{
-  console.log(searchQuery)
-  //make an API call after every key press 
-  //but if the difference between 2 API call is <200ms
-  //decline the API call
-  const timer = setTimeout(()=> 
-    getSearchSuggestions(), 
-    200)
-
+  
+    const timer = 
+    setTimeout(()=> {
+      if(searchQuery.trim() !== ""){
+      getSearchSuggestions()
+      } else{
+         setSuggestions([])
+      }
+     }, 200)
+  
    return () => {
      clearTimeout(timer)
    }
@@ -28,6 +30,7 @@ useEffect(()=>{
 const getSearchSuggestions = async () => {
    try{const data = await fetch(YOUTUBE_SEARCH_API + searchQuery)
    const json = await data.json() 
+   setSuggestions(json[1])
   }
    catch(error){
     console.error("Failed to fetch suggestions:", error);
