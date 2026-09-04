@@ -5,6 +5,7 @@ import { useSearchParams } from 'react-router-dom'
 import { IconThumbUp, IconThumbDown, IconShare, IconDownload , IconCheck ,IconThumbUpFilled, IconThumbDownFilled,} from '@tabler/icons-react'
 import { GOOGLE_API_KEY } from '../utils/constants'
 import { motion, AnimatePresence } from 'framer-motion'
+import CommentContainer from './CommentContainer'
 
 const formatCount = (count) => {
   if (!count) return "0";
@@ -196,7 +197,8 @@ const { snippet, statistics } = videoInfo
             </button>
           </div>
         </div>
-     </div>   
+        <CommentContainer></CommentContainer>
+        </div>   
      </div>    
   )
 }

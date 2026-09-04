@@ -10,6 +10,9 @@ const Head = () => {
 const [searchQuery, setSearchQuery] = useState("")
 
 const [suggestions, setSuggestions] = useState([])
+
+const [showSuggestions, setShowSuggestions] = useState(false)
+
 useEffect(()=>{
   
     const timer = 
@@ -53,15 +56,34 @@ const toggleMenuHandler = () => {
       </Link>
       </div>
       
-      <div className='flex items-center gap-0.5 md:gap-1 bg-white dark:bg-gray-600   px-0.5 md:px-1 py-0.5 w-full max-w-[288px] md:max-w-96 lg:max-w-2xl rounded-full border border-gray-300 dark:border-gray-700'>
-        <input type="text"  placeholder="Search for videos" className='w-full rounded-full p-0.5 focus:outline-none placeholder:font-inter 
+      <div className='relative flex items-center gap-0.5 md:gap-1 bg-white dark:bg-gray-600   px-0.5 md:px-1 py-0.5 w-full max-w-[288px] md:max-w-96 lg:max-w-2xl rounded-full border border-gray-300 dark:border-gray-700'>
+        <input type="text"  placeholder="Search for videos" className='w-full text-sm 
+        md:text-base rounded-full pl-2 focus:outline-none placeholder:font-inter 
         placeholder:text-sm md:placeholder:text-base'
         value={searchQuery}
         onChange={(e)=>setSearchQuery(e.target.value)}
+        onFocus={()=> setShowSuggestions(true)}
+        onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
         ></input>
         <button className='bg-neutral-50 dark:bg-gray-700 rounded-r-full p-1 md:p-1.5 cursor-pointer'>
           <IconSearch className='w-5 h-5 md:w-6 md:h-6 text-gray-600 dark:bg-gray-600'/>
         </button>
+        {showSuggestions && suggestions.length > 0 && (
+          <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 py-3 z-50">
+            <ul>
+              {suggestions.map((suggestion, index) => (
+                <li
+                  key={index}
+                  onClick={() => setSearchQuery(suggestion)}
+                  className="flex items-center gap-3 px-4 py-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer text-gray-900 dark:text-neutral-100 text-sm md:text-base font-medium"
+                >
+                  <IconSearch className="w-4 h-4 text-gray-500" />
+                  {suggestion}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
       <div className='flex items-center justify-center cursor-pointer'>
          <img src="/photo-1.webp" 
