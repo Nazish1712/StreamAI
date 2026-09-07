@@ -5,3 +5,4 @@ export const YOUTUBE_VIDEOS_API = "https://youtube.googleapis.com/youtube/v3/vid
 
 export const YOUTUBE_SEARCH_API = "/api/suggest?client=firefox&ds=yt&q="
 
+export const YOUTUBE_COMMENTS_API = "https://raw.githubusercontent.com/Nazish1712/StreamAI-Comments-API/refs/heads/main/comments-api.json"
