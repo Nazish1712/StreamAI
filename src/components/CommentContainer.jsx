@@ -28,9 +28,9 @@ useEffect(()=>{
         <div className="flex flex-col gap-4">
           <h2 className="text-gray-900 font-bold tracking-normal font-lato text-lg md:text-xl text-left">Comments</h2>
           <div className="flex flex-col">
-            {comments.map((comment)=>{
+            {comments.map((comment)=>(
               <Comment key={comment.id} data={comment}></Comment>
-            })}
+            ))}
           </div>
         </div>
     </div>

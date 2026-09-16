@@ -1,24 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 const appSlice = createSlice({
-   name: "app",
-   initialState : {
-    isMenuOpen : false,
-    isSidebarOpen : true,
-   },
-   reducers : {
-    toggleMenu : (state) => {
-        state.isMenuOpen = !state.isMenuOpen;
+  name: "app",
+  initialState: {
+    isMenuOpen: false,
+    isSidebarOpen: true,
+  },
+  reducers: {
+    toggleMenu: (state) => {
+      state.isMenuOpen = !state.isMenuOpen;
     },
-    closeSidebar : (state) => {
-        state.isSidebarOpen = false;
+    closeMenu: (state) => {
+      state.isMenuOpen = false; // 👈 Closes the slide overlay menu
     },
-    openSidebar : (state) => {
-        state.isSidebarOpen = true
+    closeSidebar: (state) => {
+      state.isSidebarOpen = false;
+    },
+    openSidebar: (state) => {
+      state.isSidebarOpen = true;
     }
-   }
-})
+  }
+});
 
-export const {toggleMenu, closeSidebar, openSidebar} = appSlice.actions
-export default appSlice.reducer
+export const { toggleMenu, closeMenu, closeSidebar, openSidebar } = appSlice.actions;
+export default appSlice.reducer;
