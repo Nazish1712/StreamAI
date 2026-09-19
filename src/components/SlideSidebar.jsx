@@ -1,6 +1,5 @@
 import React from 'react'
 import { 
-  IconFileDescription, 
   IconMusic, 
   IconBike, 
   IconCircleDottedLetterD, 
@@ -12,11 +11,16 @@ import {
 } from '@tabler/icons-react'
 import { useSelector, useDispatch } from 'react-redux'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link } from 'react-router-dom' 
 import { toggleMenu } from '../utils/appSlice'
 
 const SlideSidebar = () => {
   const dispatch = useDispatch()
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen)
+
+  const handleLinkClick = () => {
+    dispatch(toggleMenu()) 
+  }
 
   const sidebarLinksPrimary = [
     {
@@ -38,54 +42,29 @@ const SlideSidebar = () => {
 
   const sidebarLinks = [
     {
-      title: "Subscription",
-      icon: <IconFileDescription className="w-6 h-6" />,
-      content: [
-        {
-          heading: "Music",
-          icon: <IconMusic className="w-4 h-4" />,
-          href: "/",
-        },
-        {
-          heading: "Sports",
-          icon: <IconBike className="w-4 h-4" />,
-          href: "/"
-        },
-        {
-          heading: "Dancing",
-          icon: <IconCircleDottedLetterD className="w-4 h-4" />,
-          href: "/"
-        },
-        {
-          heading: "Movies",
-          icon: <IconDeviceTv className="w-4 h-4" />,
-          href: "/"
-        },
-      ]
-    },
-    {
       title: "Watch Later",
       icon: <IconClock className="w-6 h-6" />,
-      content: [
+      href: "/saved",
+      content: [        
         {
           heading: "Music",
           icon: <IconMusic className="w-4 h-4" />,
-          href: "/",
+          href: "/saved",
         },
         {
           heading: "Sports",
           icon: <IconBike className="w-4 h-4" />,
-          href: "/"
+          href: "/saved"
         },
         {
           heading: "Dancing",
           icon: <IconCircleDottedLetterD className="w-4 h-4" />,
-          href: "/"
+          href: "/saved"
         },
         {
           heading: "Movies",
           icon: <IconDeviceTv className="w-4 h-4" />,
-          href: "/"
+          href: "/saved"
         },
       ]
     },
@@ -120,35 +99,48 @@ const SlideSidebar = () => {
               {/* Primary Navigation */}
               <div className="flex flex-col gap-3">
                 {sidebarLinksPrimary.map((link) => (
-                  <a
+                  <Link
                     key={link.title}
-                    href={link.href}
+                    to={link.href}
+                    onClick={handleLinkClick}
                     className="flex gap-1.5 md:gap-2 items-center cursor-pointer hover:bg-neutral-200 rounded-sm transition-all duration-200 p-1"
                   >
                     <div>{link.icon}</div>
                     <h2 className="font-lato font-bold text-base text-gray-900">{link.title}</h2>
-                  </a>
+                  </Link>
                 ))}
               </div>
 
               {/* Categorized Sections */}
               {sidebarLinks.map((section) => (
                 <div key={section.title}>
-                  <div className="flex gap-1.5 md:gap-2 items-center cursor-pointer hover:bg-neutral-200 rounded-sm transition-all duration-200 p-1">
-                    <div>{section.icon}</div>
-                    <h2 className="font-lato text-base font-bold text-gray-900">{section.title}</h2>
-                  </div>
+                  {section.href ? (
+                    <Link
+                      to={section.href}
+                      onClick={handleLinkClick}
+                      className="flex gap-1.5 md:gap-2 items-center cursor-pointer hover:bg-neutral-200 rounded-sm transition-all duration-200 p-1 text-gray-900"
+                    >
+                      <div>{section.icon}</div>
+                      <h2 className="font-lato text-base font-bold text-gray-900">{section.title}</h2>
+                    </Link>
+                  ) : (
+                    <div className="flex gap-1.5 md:gap-2 items-center cursor-pointer hover:bg-neutral-200 rounded-sm transition-all duration-200 p-1">
+                      <div>{section.icon}</div>
+                      <h2 className="font-lato text-base font-bold text-gray-900">{section.title}</h2>
+                    </div>
+                  )}
 
                   <div className="flex flex-col gap-1 mt-3 pl-1 md:pl-0">
                     {section.content.map((item) => (
-                      <a
+                      <Link
                         key={item.heading}
-                        href={item.href}
+                        to={item.href}
+                        onClick={handleLinkClick}
                         className="flex items-center justify-start gap-[9px] md:gap-3.5 cursor-pointer hover:bg-neutral-200 rounded-sm transition-all duration-200 p-1 text-gray-800"
                       >
                         <div>{item.icon}</div>
                         <div className="font-lato text-sm">{item.heading}</div>
-                      </a>
+                      </Link>
                     ))}
                   </div>
 

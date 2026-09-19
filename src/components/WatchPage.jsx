@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { closeSidebar } from '../utils/appSlice'
 import { useSearchParams } from 'react-router-dom'
 import { 
@@ -15,6 +15,7 @@ import {
 import { GOOGLE_API_KEY } from '../utils/constants'
 import { motion, AnimatePresence } from 'framer-motion'
 import CommentContainer from './CommentContainer'
+import { addSavedVideo, removeSavedVideo } from '../utils/saveVideoSlice'
 
 const formatCount = (count) => {
   if (!count) return "0";
@@ -27,18 +28,22 @@ const WatchPage = () => {
   const [searchParams] = useSearchParams()
   const videoId = searchParams.get("v")
   const dispatch = useDispatch()
-
+  
   const [videoInfo, setVideoInfo] = useState(null)
   const [channelInfo, setChannelInfo] = useState(null)
   const [isSubscribed, setIsSubscribed] = useState(false)
   const [isLiked, setIsLiked] = useState(false)
   const [isDisliked, setIsDisliked] = useState(false)
-  const [isSaved, setIsSaved] = useState(false)
   const [showFullDescription, setShowFullDescription] = useState(false)
+
+  // 1. Read saved list from Redux
+  const savedVideos = useSelector((store) => store.saved.items)
+
+  // 2. Check if this video is already in the list
+  const isSaved = savedVideos.some((item) => item.id === videoId)
 
   useEffect(() => {
     dispatch(closeSidebar())
-
     if (videoId) {
       getVideoAndChannelDetails()
     }
@@ -62,6 +67,16 @@ const WatchPage = () => {
       }
     } catch (error) {
       console.error("Error fetching video details:", error)
+    }
+  }
+
+  // 3. Dispatch toggle action to Redux
+  const handleSaveToggle = () => {
+    if (!videoInfo) return
+    if (isSaved) {
+      dispatch(removeSavedVideo(videoId))
+    } else {
+      dispatch(addSavedVideo(videoInfo))
     }
   }
 
@@ -188,7 +203,7 @@ const WatchPage = () => {
               {/* Animated Save Button */}
               <motion.button
                 whileTap={{ scale: 0.95 }}
-                onClick={() => setIsSaved(!isSaved)}
+                onClick={handleSaveToggle}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full font-semibold text-sm whitespace-nowrap cursor-pointer transition-colors ${
                   isSaved
                     ? "bg-neutral-900 text-white dark:bg-white dark:text-black"
