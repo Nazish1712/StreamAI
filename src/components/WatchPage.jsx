@@ -16,6 +16,7 @@ import { GOOGLE_API_KEY } from '../utils/constants'
 import { motion, AnimatePresence } from 'framer-motion'
 import CommentContainer from './CommentContainer'
 import { addSavedVideo, removeSavedVideo } from '../utils/saveVideoSlice'
+import LiveChat from './LiveChat'
 
 const formatCount = (count) => {
   if (!count) return "0";
@@ -270,7 +271,7 @@ const WatchPage = () => {
 
         {/* 📱 MOBILE & TABLET LIVE CHAT CONTAINER (Visible only on < lg screens) */}
         <div className="block lg:hidden mt-6 w-full border border-gray-300 dark:border-gray-700 rounded-2xl overflow-hidden bg-white dark:bg-neutral-900">
-          {/* Put your Mobile LiveChat component here */}
+          <LiveChat/>
         </div>
 
         {/* Comments Section */}
@@ -282,7 +283,7 @@ const WatchPage = () => {
       {/* ================= 💻 DESKTOP LIVE CHAT RIGHT COLUMN (Visible only on lg: and up) ================= */}
       <div className="hidden lg:block lg:w-[30%] shrink-0">
         <div className="sticky top-4 w-full h-[550px] border border-gray-300 dark:border-gray-700 rounded-2xl overflow-hidden bg-white dark:bg-neutral-900 flex flex-col">
-          {/* Put your Desktop LiveChat component here */}
+          <LiveChat/>
         </div>
       </div>
     </div>    
