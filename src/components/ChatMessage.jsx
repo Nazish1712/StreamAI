@@ -1,33 +1,50 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { YOUTUBE_LIVECHAT_API } from '../utils/constants'
 
 const ChatMessage = () => {
+  const [liveChatData, setLiveChatData] = useState([])
 
-const [liveChatData , setLiveChatData] = useState()
+  useEffect(() => {
+    loadingLiveChat()
+  }, [])
 
-useEffect(()=>{
- loadingLiveChat()
-},[])
-
-const loadingLiveChat = async () => {
-    try{
-     const data = await fetch(YOUTUBE_LIVECHAT_API)
-     const json = await data.json()
-     setLiveChatData(json.data)
-    } catch(error){
-      
+  const loadingLiveChat = async () => {
+    try {
+      const data = await fetch(YOUTUBE_LIVECHAT_API)
+      const json = await data.json()
+      setLiveChatData(json.data)
+    } catch (error) {
+      console.error("Error fetching live chat :", error)
     }
-}
+  }
 
   return (
-    <div className="flex">
-        <div>
-            <img src="" alt="" />
+    <div className="flex flex-col w-full h-full overflow-y-auto px-2 py-1 gap-1 custom-scrollbar-hide font-lato">
+      {liveChatData.map((chat) => (
+        <div
+          key={chat.id}
+          className="flex items-start gap-3 px-3 py-1.5 rounded-lg hover:bg-gray-100/70 dark:hover:bg-neutral-800/60 transition-colors text-xs md:text-sm"
+        >
+         
+          <div className="shrink-0 mt-0.5">
+            <img
+              src={chat.avatar}
+              alt={`${chat.name}'s avatar`}
+              className="w-6 h-6 rounded-full object-cover bg-gray-200 dark:bg-neutral-700 border border-gray-200 dark:border-neutral-700"
+            />
+          </div>
+
+       
+          <div className="flex-1 leading-snug break-words">
+            <span className="font-semibold text-gray-600 dark:text-neutral-400 mr-2">
+              {chat.name}
+            </span>
+            <span className="text-gray-900 dark:text-neutral-200 font-normal">
+              {chat.message}
+            </span>
+          </div>
         </div>
-        <div>
-            <p></p>
-            <p></p>
-        </div>
+      ))}
     </div>
   )
 }
