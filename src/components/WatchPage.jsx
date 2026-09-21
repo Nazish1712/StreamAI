@@ -36,10 +36,7 @@ const WatchPage = () => {
   const [isDisliked, setIsDisliked] = useState(false)
   const [showFullDescription, setShowFullDescription] = useState(false)
 
-  // 1. Read saved list from Redux
   const savedVideos = useSelector((store) => store.saved.items)
-
-  // 2. Check if this video is already in the list
   const isSaved = savedVideos.some((item) => item.id === videoId)
 
   useEffect(() => {
@@ -70,7 +67,6 @@ const WatchPage = () => {
     }
   }
 
-  // 3. Dispatch toggle action to Redux
   const handleSaveToggle = () => {
     if (!videoInfo) return
     if (isSaved) {
@@ -88,8 +84,10 @@ const WatchPage = () => {
   const { title, channelTitle, description } = snippet
 
   return (
-    <div className="w-full flex flex-col lg:flex-row gap-6 py-4">
+    <div className="w-full flex flex-col lg:flex-row gap-6 py-4 px-2 md:px-4">
+      {/* ================= LEFT MAIN COLUMN ================= */}
       <div className="flex flex-col w-full lg:w-[70%]">
+      
         <div className="w-full aspect-video rounded-xl overflow-hidden">
           <iframe 
             width="100%" 
@@ -108,7 +106,7 @@ const WatchPage = () => {
           </h1>
 
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mt-3 gap-4 w-full">
-            {/* Channel Info & Subscribe */}
+            
             <div className="flex items-center gap-4">
               <img  
                 src={channelInfo ? channelInfo.snippet.thumbnails.default.url : null} 
@@ -161,9 +159,9 @@ const WatchPage = () => {
               </motion.button>
             </div>
 
-            {/* Action Buttons */}
+           
             <div className="flex items-center gap-2 overflow-x-auto custom-scrollbar-hide w-full lg:w-auto pb-2 lg:pb-0">
-              {/* Like / Dislike */}
+          
               <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-full">
                 <button 
                   onClick={() => {
@@ -194,13 +192,13 @@ const WatchPage = () => {
                 </button>
               </div>
 
-              {/* Share */}
+             
               <button className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full transition-colors font-semibold text-sm whitespace-nowrap cursor-pointer">
                 <IconShare className="w-5 h-5"/>
                 Share
               </button>
 
-              {/* Animated Save Button */}
+             
               <motion.button
                 whileTap={{ scale: 0.95 }}
                 onClick={handleSaveToggle}
@@ -250,7 +248,6 @@ const WatchPage = () => {
             </div>
           </div>
 
-          {/* Description Box */}
           <div 
             onClick={() => setShowFullDescription(!showFullDescription)}
             className="bg-gray-100 dark:bg-gray-800 rounded-xl p-3 mt-4 text-sm text-gray-800 dark:text-neutral-200 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
@@ -271,8 +268,23 @@ const WatchPage = () => {
           </div>
         </div>
 
-        <CommentContainer />
-      </div>   
+        {/* 📱 MOBILE & TABLET LIVE CHAT CONTAINER (Visible only on < lg screens) */}
+        <div className="block lg:hidden mt-6 w-full border border-gray-300 dark:border-gray-700 rounded-2xl overflow-hidden bg-white dark:bg-neutral-900">
+          {/* Put your Mobile LiveChat component here */}
+        </div>
+
+        {/* Comments Section */}
+        <div className="mt-6">
+          <CommentContainer />
+        </div>
+      </div>
+
+      {/* ================= 💻 DESKTOP LIVE CHAT RIGHT COLUMN (Visible only on lg: and up) ================= */}
+      <div className="hidden lg:block lg:w-[30%] shrink-0">
+        <div className="sticky top-4 w-full h-[550px] border border-gray-300 dark:border-gray-700 rounded-2xl overflow-hidden bg-white dark:bg-neutral-900 flex flex-col">
+          {/* Put your Desktop LiveChat component here */}
+        </div>
+      </div>
     </div>    
   )
 }
