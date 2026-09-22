@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 import ChatMessage from './ChatMessage'
 import { IconSend } from '@tabler/icons-react'
+import { addMessage } from '../utils/chatSlice'
+import { useDispatch } from 'react-redux'
 
 const LiveChat = () => {
 
 const [liveMessage, setLiveMessage] = useState("")
+
+const dispatch = useDispatch()
 
   return (
     <div className="w-full h-full flex flex-col bg-white dark:bg-neutral-900">
@@ -30,6 +34,14 @@ const [liveMessage, setLiveMessage] = useState("")
       <form className="flex items-center gap-2 p-2.5 border-t border-gray-200 dark:border-neutral-800 shrink-0"
       onSubmit={((e)=>{
           e.preventDefault()
+          dispatch(
+            addMessage({
+              avatar : "https://api.dicebear.com/7.x/initials/svg?seed=Priya",
+              name: "Naz_Khan",
+              message: liveMessage,
+            })
+          )
+          setLiveMessage("")
       })}>
         <input
           type="text"
@@ -39,7 +51,7 @@ const [liveMessage, setLiveMessage] = useState("")
           className="flex-1 bg-gray-100 dark:bg-neutral-800 text-gray-900 dark:text-neutral-100 placeholder-gray-500 text-xs md:text-sm px-3.5 py-2 rounded-full outline-none focus:ring-1 focus:ring-blue-500 font-lato"
         />
         <button 
-          type="button"
+          type="submit"
           className="p-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white shrink-0 cursor-pointer"
         >
           <IconSend className="w-4 h-4" />

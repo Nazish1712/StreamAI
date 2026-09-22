@@ -33,7 +33,7 @@ const i = setInterval(()=>{
   
    dispatch(addMessage(liveChatData[index]))
    index = (index + 1) % liveChatData.length
-  },500)
+  },1500)
   return () => clearInterval(i)
  },[liveChatData])
 
