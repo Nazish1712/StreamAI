@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { YOUTUBE_LIVECHAT_API } from '../utils/constants'
+import { useDispatch } from 'react-redux'
+import { addMessage } from '../utils/chatSlice'
 
 const ChatMessage = () => {
   const [liveChatData, setLiveChatData] = useState([])
 
-  useEffect(() => {
-    loadingLiveChat()
-  }, [])
+  const dispatch = useDispatch()
+
+ useEffect(()=>{
+  const i = setInterval(()=>{
+   //API Polling
+   dispatch()
+  },2000)
+  return () => clearInterval(i)
+ },[])
 
   const loadingLiveChat = async () => {
     try {
