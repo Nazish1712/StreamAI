@@ -40,7 +40,7 @@ const i = setInterval(()=>{
   
 
   return (
-    <div className="flex flex-col w-full h-full overflow-y-auto px-2 py-1 gap-1 custom-scrollbar-hide font-lato">
+    <div className="flex flex-col-reverse w-full h-full overflow-y-auto px-2 py-1 gap-1 custom-scrollbar-hide font-lato">
       {chatMessages.map((chat, index) => (
         <div
           key={index}
