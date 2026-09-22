@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { YOUTUBE_LIVECHAT_API } from '../utils/constants'
-import { useDispatch } from 'react-redux'
+import { useDispatch , useSelector} from 'react-redux'
 import { addMessage } from '../utils/chatSlice'
 
 const ChatMessage = () => {
@@ -8,29 +8,42 @@ const ChatMessage = () => {
 
   const dispatch = useDispatch()
 
- useEffect(()=>{
-  const i = setInterval(()=>{
-   //API Polling
-   dispatch()
-  },2000)
-  return () => clearInterval(i)
+  const chatMessages = useSelector((store) => store.chat.messages)
+
+ useEffect(()=> {
+  loadingLiveChat()
  },[])
 
-  const loadingLiveChat = async () => {
-    try {
-      const data = await fetch(YOUTUBE_LIVECHAT_API)
-      const json = await data.json()
-      setLiveChatData(json.data)
-    } catch (error) {
-      console.error("Error fetching live chat :", error)
-    }
+ const loadingLiveChat = async () => {
+  try {
+    const data = await fetch(YOUTUBE_LIVECHAT_API)
+    const json = await data.json()
+    setLiveChatData(json.data)
+  } catch (error) {
+    console.error("Error fetching live chat :", error)
   }
+}
+
+ useEffect(()=>{
+if(liveChatData.length === 0) return
+
+let index = 0
+const i = setInterval(()=>{
+   //API Polling
+  
+   dispatch(addMessage(liveChatData[index]))
+   index = (index + 1) % liveChatData.length
+  },500)
+  return () => clearInterval(i)
+ },[liveChatData])
+
+  
 
   return (
     <div className="flex flex-col w-full h-full overflow-y-auto px-2 py-1 gap-1 custom-scrollbar-hide font-lato">
-      {liveChatData.map((chat) => (
+      {chatMessages.map((chat, index) => (
         <div
-          key={chat.id}
+          key={index}
           className="flex items-start gap-3 px-3 py-1.5 rounded-lg hover:bg-gray-100/70 dark:hover:bg-neutral-800/60 transition-colors text-xs md:text-sm"
         >
          

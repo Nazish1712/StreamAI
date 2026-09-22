@@ -270,7 +270,7 @@ const WatchPage = () => {
         </div>
 
         {/* 📱 MOBILE & TABLET LIVE CHAT CONTAINER (Visible only on < lg screens) */}
-        <div className="block lg:hidden mt-6 w-full border border-gray-300 dark:border-gray-700 rounded-2xl overflow-hidden bg-white dark:bg-neutral-900">
+        <div className="flex flex-col lg:hidden mt-6 w-full h-[450px] border border-gray-300 dark:border-gray-700 rounded-2xl overflow-hidden bg-white dark:bg-neutral-900">
           <LiveChat/>
         </div>
 
