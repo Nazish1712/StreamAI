@@ -18,14 +18,14 @@ const ChatMessage = () => {
   try {
     const data = await fetch(YOUTUBE_LIVECHAT_API)
     const json = await data.json()
-    setLiveChatData(json.data)
+    setLiveChatData(json.data || [])
   } catch (error) {
     console.error("Error fetching live chat :", error)
   }
 }
 
  useEffect(()=>{
-if(liveChatData.length === 0) return
+if(!liveChatData || liveChatData.length === 0) return
 
 let index = 0
 const i = setInterval(()=>{

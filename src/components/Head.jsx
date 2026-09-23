@@ -35,7 +35,7 @@ useEffect(()=>{
 const getSearchSuggestions = async () => {
    try{const data = await fetch(YOUTUBE_SEARCH_API + searchQuery)
    const json = await data.json() 
-   setSuggestions(json[1])
+   setSuggestions(json[1] || [] )
   }
    catch(error){
     console.error("Failed to fetch suggestions:", error);
@@ -60,7 +60,7 @@ const handleSearch = (e) => {
       <IconMenu2 className='w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 text-gray-800  dark:text-neutral-100 cursor-pointer' onClick={() => toggleMenuHandler()}/>
       <Link to="/" className="flex items-center md:gap-0.5" >
       <IconMovie className='w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 text-red-500 cursor-pointer'/>
-      <h1 className="hidden md:flex md:text-lg lg:text-xl lg:font-base text-gray-800 dark:text-neutral-100 font-russo cursor-pointer">Stream<span className="lg:font-bold">AI</span></h1>
+      <h1 className="hidden md:flex md:text-lg lg:text-xl lg:font-base text-gray-800 dark:text-neutral-100 font-russo cursor-pointer">Stream<span className="lg:font-bold">ALL</span></h1>
       </Link>
       </div>
       
