@@ -57,7 +57,7 @@ const SavedVideosPage = () => {
                   dispatch(removeSavedVideo(id))
                 }}
                 title="Remove from saved"
-                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/70 hover:bg-red-600 text-white opacity-0 group-hover/card:opacity-100 transition-all duration-200 cursor-pointer shadow-md"
+                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/70 hover:bg-red-600 text-black opacity-0 group-hover/card:opacity-100 transition-all duration-200 cursor-pointer shadow-md"
               >
                 <IconTrash className="w-4 h-4" />
               </button>
