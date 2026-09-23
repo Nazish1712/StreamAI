@@ -2,7 +2,7 @@ import React ,{useEffect, useState} from 'react'
 import { IconMenu2 , IconMovie, IconUserCog, IconSearch} from '@tabler/icons-react'
 import { useDispatch } from 'react-redux'
 import { toggleMenu } from '../utils/appSlice'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { YOUTUBE_SEARCH_API } from '../utils/constants'
 
 const Head = () => {
@@ -12,6 +12,8 @@ const [searchQuery, setSearchQuery] = useState("")
 const [suggestions, setSuggestions] = useState([])
 
 const [showSuggestions, setShowSuggestions] = useState(false)
+
+const navigate = useNavigate()
 
 useEffect(()=>{
   
@@ -46,6 +48,12 @@ const toggleMenuHandler = () => {
   dispatch(toggleMenu())
 }
   
+const handleSearch = (e) => {
+ e.preventDefault()
+ if(searchQuery === "") return
+ navigate("/results?search_query=" + searchQuery)
+}
+
   return (
     <div className="flex justify-between items-center px-0.5 sm:px-1 md:px-5  dark:bg-gray-900  py-1 md:py-2 lg:py-3 bg-neutral-50 shadow-sm rounded-tl-4xl rounded-r-4xl sticky top-0 z-50">
       <div className="flex justify-between gap-1 md:gap-2 lg:gap-3">
@@ -56,7 +64,9 @@ const toggleMenuHandler = () => {
       </Link>
       </div>
       
-      <div className='relative flex items-center gap-0.5 md:gap-1 bg-white dark:bg-gray-600   px-0.5 md:px-1 py-0.5 w-full max-w-[288px] md:max-w-96 lg:max-w-2xl rounded-full border border-gray-300 dark:border-gray-700'>
+      <form 
+      onSubmit={handleSearch}
+      className='relative flex items-center gap-0.5 md:gap-1 bg-white dark:bg-gray-600   px-0.5 md:px-1 py-0.5 w-full max-w-[288px] md:max-w-96 lg:max-w-2xl rounded-full border border-gray-300 dark:border-gray-700'>
         <input type="text"  placeholder="Search for videos" className='w-full text-sm 
         md:text-base rounded-full pl-2 focus:outline-none placeholder:font-inter 
         placeholder:text-sm md:placeholder:text-base'
@@ -65,7 +75,9 @@ const toggleMenuHandler = () => {
         onFocus={()=> setShowSuggestions(true)}
         onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
         ></input>
-        <button className='bg-neutral-50 dark:bg-gray-700 rounded-r-full p-1 md:p-1.5 cursor-pointer'>
+        <button 
+        type="submit"
+        className='bg-neutral-50 dark:bg-gray-700 rounded-r-full p-1 md:p-1.5 cursor-pointer'>
           <IconSearch className='w-5 h-5 md:w-6 md:h-6 text-gray-600 dark:bg-gray-600'/>
         </button>
         {showSuggestions && suggestions.length > 0 && (
@@ -84,7 +96,7 @@ const toggleMenuHandler = () => {
             </ul>
           </div>
         )}
-      </div>
+      </form>
       <div className='flex items-center justify-center cursor-pointer'>
          <img src="/photo-1.webp" 
          alt="User-profile"
