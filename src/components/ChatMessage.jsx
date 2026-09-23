@@ -44,23 +44,23 @@ const i = setInterval(()=>{
       {chatMessages.map((chat, index) => (
         <div
           key={index}
-          className="flex items-start gap-3 px-3 py-1.5 rounded-lg hover:bg-gray-100/70 dark:hover:bg-neutral-800/60 transition-colors text-xs md:text-sm"
+          className="flex items-start gap-3 px-3 py-1.5 rounded-lg hover:bg-gray-100/70  transition-colors text-xs md:text-sm"
         >
          
           <div className="shrink-0 mt-0.5">
             <img
               src={chat.avatar}
               alt={`${chat.name}'s avatar`}
-              className="w-6 h-6 rounded-full object-cover bg-gray-200 dark:bg-neutral-700 border border-gray-200 dark:border-neutral-700"
+              className="w-6 h-6 rounded-full object-cover bg-gray-200  border border-gray-200"
             />
           </div>
 
        
           <div className="flex-1 leading-snug break-words">
-            <span className="font-semibold text-gray-600 dark:text-neutral-400 mr-2">
+            <span className="font-semibold text-gray-600 mr-2">
               {chat.name}
             </span>
-            <span className="text-gray-900 dark:text-neutral-200 font-normal">
+            <span className="text-gray-900  font-normal">
               {chat.message}
             </span>
           </div>

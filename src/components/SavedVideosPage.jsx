@@ -13,18 +13,18 @@ const SavedVideosPage = () => {
   if (!savedVideos || savedVideos.length === 0) {
     return (
       <div className="w-full flex flex-col items-center justify-center min-h-[65vh] gap-4 text-center px-4">
-        <div className="w-20 h-20 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-400">
+        <div className="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center text-gray-400">
           <IconBookmarkOff className="w-10 h-10" />
         </div>
-        <h2 className="text-xl font-bold text-gray-900 dark:text-white font-lato">
+        <h2 className="text-xl font-bold text-gray-900 font-lato">
           No saved videos yet
         </h2>
-        <p className="text-sm text-gray-500 dark:text-gray-400 max-w-sm">
+        <p className="text-sm text-gray-500 max-w-sm">
           Save your favorite videos while watching by clicking the Save button on the watch page.
         </p>
         <Link
           to="/"
-          className="mt-2 px-5 py-2.5 rounded-full bg-black dark:bg-white text-white dark:text-black font-semibold text-sm hover:opacity-90 transition-opacity"
+          className="mt-2 px-5 py-2.5 rounded-full bg-black text-white font-semibold text-sm hover:opacity-90 transition-opacity"
         >
           Explore Videos
         </Link>
@@ -34,8 +34,8 @@ const SavedVideosPage = () => {
 
   return (
     <div className="w-full p-4 md:p-6 max-w-7xl mx-auto font-lato">
-      <div className="flex items-baseline justify-between mb-6 border-b border-gray-200 dark:border-gray-800 pb-3">
-        <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+      <div className="flex items-baseline justify-between mb-6 border-b border-gray-200 pb-3">
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
           Saved Videos
         </h1>
         <span className="text-sm text-gray-500 font-medium">

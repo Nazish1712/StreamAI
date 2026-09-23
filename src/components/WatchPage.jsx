@@ -115,10 +115,10 @@ const WatchPage = () => {
                 className="w-10 h-10 rounded-full object-cover bg-gray-200"
               />
               <div className="flex flex-col">
-                <h3 className="font-bold text-base text-gray-900 dark:text-white leading-tight">
+                <h3 className="font-bold text-base text-gray-900 leading-tight">
                   {channelTitle}
                 </h3>
-                <p className="text-xs text-gray-600 dark:text-gray-400">
+                <p className="text-xs text-gray-600">
                   {channelInfo ? formatCount(channelInfo.statistics.subscriberCount) : "..."} subscribers
                 </p>
               </div>
@@ -128,8 +128,8 @@ const WatchPage = () => {
                 onClick={() => setIsSubscribed(!isSubscribed)}
                 className={`flex items-center gap-1.5 font-semibold px-4 py-2 rounded-full ml-2 transition-all duration-200 cursor-pointer ${
                   isSubscribed 
-                    ? "bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-300" 
-                    : "bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800" 
+                    ? "bg-gray-200 text-gray-800 hover:bg-gray-300" 
+                    : "bg-black text-white hover:bg-gray-800" 
                 }`}
               >
                 <AnimatePresence mode="wait">
@@ -163,7 +163,7 @@ const WatchPage = () => {
            
             <div className="flex items-center gap-2 overflow-x-auto custom-scrollbar-hide w-full lg:w-auto pb-2 lg:pb-0">
           
-              <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-full">
+              <div className="flex items-center bg-gray-100 rounded-full">
                 <button 
                   onClick={() => {
                     if (isLiked) {
@@ -173,7 +173,7 @@ const WatchPage = () => {
                       setIsDisliked(false)
                     }
                   }}
-                  className="flex items-center gap-2 px-4 py-2 border-r border-gray-300 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-l-full transition-colors cursor-pointer"
+                  className="flex items-center gap-2 px-4 py-2 border-r border-gray-300 hover:bg-gray-200 rounded-l-full transition-colors cursor-pointer"
                 >
                   {isLiked ? <IconThumbUpFilled className="w-5 h-5" /> : <IconThumbUp className="w-5 h-5"/>}
                   <span className="text-sm font-semibold">{formatCount(statistics.likeCount)}</span>
@@ -187,14 +187,14 @@ const WatchPage = () => {
                       setIsLiked(false)
                     }
                   }}
-                  className="px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-r-full transition-colors cursor-pointer"
+                  className="px-4 py-2 hover:bg-gray-200 rounded-r-full transition-colors cursor-pointer"
                 >
                   {isDisliked ? <IconThumbDownFilled className="w-5 h-5" /> : <IconThumbDown className="w-5 h-5"/>}
                 </button>
               </div>
 
              
-              <button className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full transition-colors font-semibold text-sm whitespace-nowrap cursor-pointer">
+              <button className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors font-semibold text-sm whitespace-nowrap cursor-pointer">
                 <IconShare className="w-5 h-5"/>
                 Share
               </button>
@@ -205,8 +205,8 @@ const WatchPage = () => {
                 onClick={handleSaveToggle}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full font-semibold text-sm whitespace-nowrap cursor-pointer transition-colors ${
                   isSaved
-                    ? "bg-neutral-900 text-white dark:bg-white dark:text-black"
-                    : "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700"
+                    ? "bg-neutral-900 text-white"
+                    : "bg-gray-100 text-gray-900 hover:bg-gray-200"
                 }`}
               >
                 <motion.div
@@ -251,9 +251,9 @@ const WatchPage = () => {
 
           <div 
             onClick={() => setShowFullDescription(!showFullDescription)}
-            className="bg-gray-100 dark:bg-gray-800 rounded-xl p-3 mt-4 text-sm text-gray-800 dark:text-neutral-200 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+            className="bg-gray-100 rounded-xl p-3 mt-4 text-sm text-gray-800 cursor-pointer hover:bg-gray-200 transition-colors"
           >
-            <p className="font-semibold text-gray-900 dark:text-white mb-1">
+            <p className="font-semibold text-gray-900 mb-1">
               {formatCount(statistics.viewCount)} views
             </p>
             <p className={`text-sm ${
@@ -263,14 +263,14 @@ const WatchPage = () => {
             }`}>
               {description}
             </p>
-            <button className="font-semibold mt-2 text-gray-900 dark:text-white cursor-pointer">
+            <button className="font-semibold mt-2 text-gray-900 cursor-pointer">
               {showFullDescription ? "Show less" : "Show more"}
             </button>
           </div>
         </div>
 
         {/* 📱 MOBILE & TABLET LIVE CHAT CONTAINER (Visible only on < lg screens) */}
-        <div className="flex flex-col lg:hidden mt-6 w-full h-[450px] border border-gray-300 dark:border-gray-700 rounded-2xl overflow-hidden bg-white dark:bg-neutral-900">
+        <div className="flex flex-col lg:hidden mt-6 w-full h-[450px] border border-gray-300 rounded-2xl overflow-hidden bg-white">
           <LiveChat/>
         </div>
 
@@ -282,7 +282,7 @@ const WatchPage = () => {
 
       {/* ================= 💻 DESKTOP LIVE CHAT RIGHT COLUMN (Visible only on lg: and up) ================= */}
       <div className="hidden lg:block lg:w-[30%] shrink-0">
-        <div className="sticky top-4 w-full h-[550px] border border-gray-300 dark:border-gray-700 rounded-2xl overflow-hidden bg-white dark:bg-neutral-900 flex flex-col">
+        <div className="sticky top-4 w-full h-[550px] border border-gray-300 rounded-2xl overflow-hidden bg-white flex flex-col">
           <LiveChat/>
         </div>
       </div>

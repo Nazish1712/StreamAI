@@ -19,16 +19,16 @@ const Comment = ({ data }) => {
         />
         <div className="flex flex-col text-sm w-full">
           <div className="flex items-center gap-2">
-            <span className="font-semibold text-gray-900 dark:text-gray-100 text-left">
+            <span className="font-semibold text-gray-900  text-left">
               @{name}
             </span>
             {timestamp && (
-              <span className="text-xs text-gray-500 dark:text-gray-400">
+              <span className="text-xs text-gray-500">
                 {timestamp}
               </span>
             )}
           </div>
-          <p className="text-gray-800 dark:text-gray-200 text-left mt-0.5">
+          <p className="text-gray-800 text-left mt-0.5">
             {text}
           </p>
 
@@ -36,7 +36,7 @@ const Comment = ({ data }) => {
           {hasReplies && (
             <button
               onClick={() => setShowReplies(!showReplies)}
-              className="flex items-center gap-1.5 text-blue-600 dark:text-blue-400 font-semibold text-xs mt-2 py-1 px-2.5 rounded-full hover:bg-blue-50 dark:hover:bg-blue-950/40 w-fit cursor-pointer transition-colors"
+              className="flex items-center gap-1.5 text-blue-600 font-semibold text-xs mt-2 py-1 px-2.5 rounded-full hover:bg-blue-50 w-fit cursor-pointer transition-colors"
             >
               <motion.span
                 animate={{ rotate: showReplies ? 180 : 0 }}
@@ -63,7 +63,7 @@ const Comment = ({ data }) => {
             transition={{ duration: 0.28, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <div className="pl-6 ml-4 border-l-2 border-gray-200 dark:border-gray-700 flex flex-col pt-1">
+            <div className="pl-6 ml-4 border-l-2 border-gray-200  flex flex-col pt-1">
               {replies.map((reply) => (
                 <Comment key={reply.id} data={reply} />
               ))}

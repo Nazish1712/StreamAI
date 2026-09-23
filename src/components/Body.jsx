@@ -1,6 +1,5 @@
 import React from 'react'
 import Sidebar from './Sidebar'
-import MainContainer from './MainContainer'
 import SlideSidebar from './SlideSidebar'
 import { Outlet } from 'react-router-dom'
 
